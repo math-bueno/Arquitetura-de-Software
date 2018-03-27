@@ -1,26 +1,30 @@
 package br.usjt.arqsw.service;
 
+
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import br.usjt.arqsw.dao.ChamadoDAO;
 import br.usjt.arqsw.entity.Chamado;
 import br.usjt.arqsw.entity.Fila;
-
-
 /**
  * 
- * @author MatheusBueno
+ * @author MatheusBueno RA:81612420
+ * CCP3AN-MCA 
+ * Arquitetura de software
  *
- *CCP3AN-MCA
  */
+@Service
 public class ChamadoService {
-
 	private ChamadoDAO chamadoDAO;
-
-	public ChamadoService() {
-		chamadoDAO = new ChamadoDAO();
+	
+	@Autowired
+	public ChamadoService(ChamadoDAO chamadoDAO) {
+		this.chamadoDAO = chamadoDAO;
 	}
 	/**
 	 * Método para encontrar chamados pela Fila

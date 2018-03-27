@@ -14,16 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.usjt.arqsw.entity.Usuario;
 import br.usjt.arqsw.service.UsuarioService;
-
 /**
  * 
- * @author MatheusBueno RA:81612420 
- * 
- * CCP3AN-MCA
- *  Arquitetura de software
+ * @author MatheusBueno RA:81612420
+ * CCP3AN-MCA 
+ * Arquitetura de software
  *
  */
 @Controller
+@Transactional
 public class UsuarioController {
 
 	private UsuarioService usuarioService;
@@ -34,28 +33,27 @@ public class UsuarioController {
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String logar(@Valid Usuario usuario, BindingResult result, Model model, HttpServletRequest request) {
+	public String logar(@Valid Usuario usuario, BindingResult result, Model model ,HttpServletRequest request) {
 		try {
 			if (result.hasErrors()) {
 				System.out.println("Deu erro " + result.toString());
 				return "login";
 			}
 			Usuario autenticado = usuarioService.logar(usuario);
-			if (autenticado == null) {
+			if(autenticado == null){
 				model.addAttribute("msg", "Usuário ou senha inválidos.");
 				return "login";
 			}
 			request.getSession().setAttribute("usuarioLogado", autenticado);
-
+			
 			return "redirect:index";
 		} catch (IOException e) {
 			e.printStackTrace();
 			return "Erro";
 		}
 	}
-
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String login() {
+	public String login () {
 		return "login";
 	}
 }

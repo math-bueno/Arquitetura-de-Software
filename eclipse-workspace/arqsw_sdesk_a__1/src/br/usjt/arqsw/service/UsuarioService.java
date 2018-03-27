@@ -3,22 +3,21 @@ package br.usjt.arqsw.service;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import br.usjt.arqsw.dao.UsuarioDAO;
 import br.usjt.arqsw.entity.Usuario;
-
 /**
  * 
- * @author MatheusBueno RA:81612420 
- * 
- * CCP3AN-MCA
- *  Arquitetura de software
+ * @author MatheusBueno RA:81612420
+ * CCP3AN-MCA 
+ * Arquitetura de software
  *
  */
-
+@Service
 public class UsuarioService {
-
-private UsuarioDAO usuarioDAO;
+	
+	private UsuarioDAO usuarioDAO;
 	
 	@Autowired
 	public UsuarioService(UsuarioDAO usuarioDAO) {

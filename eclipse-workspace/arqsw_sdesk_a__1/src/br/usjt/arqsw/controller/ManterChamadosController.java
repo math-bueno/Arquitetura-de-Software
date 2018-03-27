@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,23 +15,25 @@ import br.usjt.arqsw.entity.Chamado;
 import br.usjt.arqsw.entity.Fila;
 import br.usjt.arqsw.service.ChamadoService;
 import br.usjt.arqsw.service.FilaService;
+
 /**
  * 
  * @author MatheusBueno RA:81612420
- * 
- * CCP3AN-MCA
+ * CCP3AN-MCA 
+ * Arquitetura de software
  *
  */
 @Controller
+@Transactional
 public class ManterChamadosController {
 	private FilaService filaService;
 
-
 	private ChamadoService chamadoService;
 
-	public ManterChamadosController() {
-		filaService = new FilaService();
-		chamadoService = new ChamadoService();
+	@Autowired
+	public ManterChamadosController(FilaService filaService, ChamadoService chamadoService) {
+		this.filaService = filaService;
+		this.chamadoService = chamadoService;
 	}
 
 	/**
